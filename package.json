@@ -1,0 +1,43 @@
+{
+  "name": "iobroker.growatt-bms",
+  "version": "0.2.1",
+  "description": "Liest das Growatt-BMS (Low Voltage, CAN-Protokoll Rev 04) direkt über SocketCAN oder über den CAN-Adapter aus",
+  "author": "Lars",
+  "license": "MIT",
+  "homepage": "https://github.com/lars752/ioBroker.growatt-bms",
+  "keywords": [
+    "ioBroker",
+    "growatt",
+    "bms",
+    "can",
+    "canbus",
+    "socketcan",
+    "battery",
+    "lifepo4"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lars752/ioBroker.growatt-bms.git"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "@iobroker/adapter-core": "^3.2.3"
+  },
+  "main": "main.js",
+  "files": [
+    "admin/",
+    "lib/",
+    "main.js",
+    "io-package.json",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node test/test.js"
+  },
+  "bugs": {
+    "url": "https://github.com/lars752/ioBroker.growatt-bms/issues"
+  },
+  "readmeFilename": "README.md"
+}

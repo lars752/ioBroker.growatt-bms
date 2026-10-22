@@ -1,0 +1,98 @@
+{
+  "common": {
+    "name": "growatt-bms",
+    "version": "0.2.1",
+    "news": {
+      "0.2.1": {
+        "en": "Repository links set",
+        "de": "Repository-Links gesetzt"
+      },
+      "0.2.0": {
+        "en": "Data points only in the instance namespace (growatt-bms.<N>), mirroring to 0_userdata removed",
+        "de": "Datenpunkte ausschließlich im Instanz-Namensraum (growatt-bms.<N>), Spiegelung nach 0_userdata entfernt"
+      },
+      "0.1.0": {
+        "en": "Initial release: Growatt BMS CAN protocol (Rev 04) via SocketCAN or CAN adapter, watchdog, plausibility checks",
+        "de": "Erstveröffentlichung: Growatt-BMS-CAN-Protokoll (Rev 04) über SocketCAN oder CAN-Adapter, Watchdog, Plausibilitätsprüfung"
+      }
+    },
+    "titleLang": {
+      "en": "Growatt BMS (CAN bus)",
+      "de": "Growatt BMS (CAN-Bus)"
+    },
+    "desc": {
+      "en": "Reads a Growatt low-voltage BMS from the CAN bus and provides voltage, current, SoC, limits, cell voltages and alarms",
+      "de": "Liest ein Growatt-Niedervolt-BMS vom CAN-Bus und stellt Spannung, Strom, SoC, Limits, Zellspannungen und Alarme bereit"
+    },
+    "authors": [
+      "Lars"
+    ],
+    "keywords": [
+      "growatt",
+      "bms",
+      "can",
+      "battery"
+    ],
+    "license": "MIT",
+    "platform": "Javascript/Node.js",
+    "main": "main.js",
+    "icon": "growatt-bms.png",
+    "enabled": true,
+    "extIcon": "https://raw.githubusercontent.com/lars752/ioBroker.growatt-bms/main/admin/growatt-bms.png",
+    "readme": "https://github.com/lars752/ioBroker.growatt-bms/blob/main/README.md",
+    "loglevel": "info",
+    "mode": "daemon",
+    "type": "hardware",
+    "compact": false,
+    "connectionType": "local",
+    "dataSource": "push",
+    "adminUI": {
+      "config": "json"
+    },
+    "dependencies": [
+      {
+        "js-controller": ">=5.0.19"
+      }
+    ],
+    "globalDependencies": [
+      {
+        "admin": ">=6.0.0"
+      }
+    ]
+  },
+  "native": {
+    "source": "socketcan",
+    "canInterface": "can0",
+    "candumpPath": "candump",
+    "canAdapterInstance": "canbus.0",
+    "timeoutSec": 15,
+    "watchdogSec": 5,
+    "throttleSec": 5,
+    "failSafeZero": true,
+    "plausibility": true
+  },
+  "objects": [],
+  "instanceObjects": [
+    {
+      "_id": "info",
+      "type": "channel",
+      "common": {
+        "name": "Information"
+      },
+      "native": {}
+    },
+    {
+      "_id": "info.connection",
+      "type": "state",
+      "common": {
+        "role": "indicator.connected",
+        "name": "BMS sendet Daten",
+        "type": "boolean",
+        "read": true,
+        "write": false,
+        "def": false
+      },
+      "native": {}
+    }
+  ]
+}
