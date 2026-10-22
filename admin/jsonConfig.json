@@ -1,0 +1,136 @@
+{
+  "type": "panel",
+  "i18n": false,
+  "items": {
+    "_hint": {
+      "type": "staticText",
+      "text": {
+        "de": "Die CAN-Schnittstelle (z. B. can0) muss im Betriebssystem bereits aktiv sein, siehe README.",
+        "en": "The CAN interface (e.g. can0) must already be up in the operating system, see README."
+      },
+      "newLine": true,
+      "sm": 12
+    },
+    "source": {
+      "type": "select",
+      "label": {
+        "de": "Datenquelle",
+        "en": "Data source"
+      },
+      "options": [
+        {
+          "label": {
+            "de": "SocketCAN direkt (candump)",
+            "en": "SocketCAN direct (candump)"
+          },
+          "value": "socketcan"
+        },
+        {
+          "label": {
+            "de": "Vorhandener CAN-Adapter (Zustände *.json)",
+            "en": "Existing CAN adapter (states *.json)"
+          },
+          "value": "canbus-adapter"
+        }
+      ],
+      "newLine": true,
+      "sm": 12,
+      "md": 6
+    },
+    "canInterface": {
+      "type": "text",
+      "label": {
+        "de": "CAN-Schnittstelle",
+        "en": "CAN interface"
+      },
+      "help": {
+        "de": "z. B. can0 oder slcan0",
+        "en": "e.g. can0 or slcan0"
+      },
+      "hidden": "data.source !== 'socketcan'",
+      "newLine": true,
+      "sm": 12,
+      "md": 3
+    },
+    "candumpPath": {
+      "type": "text",
+      "label": {
+        "de": "Pfad zu candump",
+        "en": "Path to candump"
+      },
+      "help": {
+        "de": "Paket can-utils; Standard: candump",
+        "en": "Package can-utils; default: candump"
+      },
+      "hidden": "data.source !== 'socketcan'",
+      "sm": 12,
+      "md": 3
+    },
+    "canAdapterInstance": {
+      "type": "text",
+      "label": {
+        "de": "CAN-Adapter-Instanz",
+        "en": "CAN adapter instance"
+      },
+      "help": {
+        "de": "z. B. canbus.2",
+        "en": "e.g. canbus.2"
+      },
+      "hidden": "data.source !== 'canbus-adapter'",
+      "newLine": true,
+      "sm": 12,
+      "md": 3
+    },
+    "timeoutSec": {
+      "type": "number",
+      "label": {
+        "de": "Watchdog-Timeout (s)",
+        "en": "Watchdog timeout (s)"
+      },
+      "min": 3,
+      "max": 600,
+      "newLine": true,
+      "sm": 12,
+      "md": 3
+    },
+    "watchdogSec": {
+      "type": "number",
+      "label": {
+        "de": "Watchdog-Prüfintervall (s)",
+        "en": "Watchdog check interval (s)"
+      },
+      "min": 1,
+      "max": 60,
+      "sm": 12,
+      "md": 3
+    },
+    "throttleSec": {
+      "type": "number",
+      "label": {
+        "de": "Last_Update höchstens alle (s)",
+        "en": "Last_Update at most every (s)"
+      },
+      "min": 1,
+      "max": 60,
+      "sm": 12,
+      "md": 3
+    },
+    "failSafeZero": {
+      "type": "checkbox",
+      "label": {
+        "de": "Bei Offline Limits und Strom auf 0 setzen (empfohlen)",
+        "en": "Set limits and current to 0 when offline (recommended)"
+      },
+      "newLine": true,
+      "sm": 12
+    },
+    "plausibility": {
+      "type": "checkbox",
+      "label": {
+        "de": "Plausibilitätsprüfung (unplausible Frames verwerfen)",
+        "en": "Plausibility check (discard implausible frames)"
+      },
+      "sm": 12
+    }
+  }
+}
