@@ -1,6 +1,6 @@
 {
   "name": "iobroker.growatt-bms",
-  "version": "0.2.1",
+  "version": "1.0.0",
   "description": "Liest das Growatt-BMS (Low Voltage, CAN-Protokoll Rev 04) direkt über SocketCAN oder über den CAN-Adapter aus",
   "author": "Lars",
   "license": "MIT",

@@ -1,19 +1,11 @@
 {
   "common": {
     "name": "growatt-bms",
-    "version": "0.2.1",
+    "version": "1.0.0",
     "news": {
-      "0.2.1": {
-        "en": "Repository links set",
-        "de": "Repository-Links gesetzt"
-      },
-      "0.2.0": {
-        "en": "Data points only in the instance namespace (growatt-bms.<N>), mirroring to 0_userdata removed",
-        "de": "Datenpunkte ausschließlich im Instanz-Namensraum (growatt-bms.<N>), Spiegelung nach 0_userdata entfernt"
-      },
-      "0.1.0": {
-        "en": "Initial release: Growatt BMS CAN protocol (Rev 04) via SocketCAN or CAN adapter, watchdog, plausibility checks",
-        "de": "Erstveröffentlichung: Growatt-BMS-CAN-Protokoll (Rev 04) über SocketCAN oder CAN-Adapter, Watchdog, Plausibilitätsprüfung"
+      "1.0.0": {
+        "en": "Initial release",
+        "de": "Erstveröffentlichung"
       }
     },
     "titleLang": {
