@@ -21,21 +21,22 @@ class GrowattBms extends utils.Adapter {
                 if (this.cache.get(id) === val) return;
                 this.cache.set(id, val);
                 await this.setStateAsync(id, { val, ack: true });
-                if (id === 'Online') await this.setStateAsync('info.connection', { val, ack: true });
+                if (id === 'bms.Online') await this.setStateAsync('info.connection', { val, ack: true });
             })
             .catch((e) => this.log.error(`Schreiben von ${id} fehlgeschlagen: ${e.message}`));
         return this.queue;
     }
 
     async createObjects() {
-        const channel = { type: 'channel', common: { name: 'Zellspannungen' }, native: {} };
-        await this.extendObjectAsync('Cells', channel);
+        await this.extendObjectAsync('bms', { type: 'channel', common: { name: 'BMS Datenpunkte' }, native: {} });
+        await this.extendObjectAsync('Cells', { type: 'channel', common: { name: 'Zellspannungen' }, native: {} });
         for (const d of g.stateDefs()) {
+            // Zellspannungen bleiben unter Cells.*, alle anderen unter bms.*
+            const id = d.id.startsWith('Cells.') ? d.id : `bms.${d.id}`;
             const common = { name: d.name, type: d.type, role: d.role, read: true, write: false, def: d.def };
             if (d.unit) common.unit = d.unit;
-            const obj = { type: 'state', common, native: {} };
-            await this.extendObjectAsync(d.id, obj);
-            if (!(await this.getStateAsync(d.id))) await this.setStateAsync(d.id, { val: d.def, ack: true });
+            await this.extendObjectAsync(id, { type: 'state', common, native: {} });
+            if (!(await this.getStateAsync(id))) await this.setStateAsync(id, { val: d.def, ack: true });
         }
     }
 

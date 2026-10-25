@@ -1,8 +1,12 @@
 {
   "common": {
     "name": "growatt-bms",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "news": {
+      "1.0.1": {
+        "en": "BMS data points moved into 'bms' subfolder; Cells remain under Cells.*",
+        "de": "BMS-Datenpunkte in Unterordner 'bms' verschoben; Zellspannungen bleiben unter Cells.*"
+      },
       "1.0.0": {
         "en": "Initial release",
         "de": "Erstveröffentlichung"
