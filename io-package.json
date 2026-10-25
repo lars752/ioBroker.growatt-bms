@@ -1,8 +1,12 @@
 {
   "common": {
     "name": "growatt-bms",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "news": {
+      "1.0.2": {
+        "en": "pruneOnStart: old flat data points are deleted automatically on adapter start",
+        "de": "pruneOnStart: veraltete flache Datenpunkte werden beim Adapterstart automatisch gelöscht"
+      },
       "1.0.1": {
         "en": "BMS data points moved into 'bms' subfolder; Cells remain under Cells.*",
         "de": "BMS-Datenpunkte in Unterordner 'bms' verschoben; Zellspannungen bleiben unter Cells.*"

@@ -40,11 +40,32 @@ class GrowattBms extends utils.Adapter {
         }
     }
 
+    async pruneOnStart() {
+        const expectedIds = new Set(['info', 'info.connection', 'bms', 'Cells']);
+        for (const d of g.stateDefs()) {
+            expectedIds.add(d.id.startsWith('Cells.') ? d.id : `bms.${d.id}`);
+        }
+        const all = await this.getAdapterObjectsAsync();
+        for (const fullId of Object.keys(all)) {
+            // fullId is e.g. "growatt-bms.0.Voltage" — strip namespace prefix
+            const relId = fullId.slice(this.namespace.length + 1);
+            if (!expectedIds.has(relId)) {
+                try {
+                    await this.delObjectAsync(relId, { recursive: true });
+                    this.log.info(`Veralteten Datenpunkt gelöscht: ${fullId}`);
+                } catch (e) {
+                    this.log.warn(`Konnte ${fullId} nicht löschen: ${e.message}`);
+                }
+            }
+        }
+    }
+
     async onReady() {
         const c = this.config;
         await this.setStateAsync('info.connection', false, true);
 
         await this.createObjects();
+        await this.pruneOnStart();
 
         this.core = new BmsCore({
             log: this.log,
